@@ -1,2 +1,2 @@
 if __name__ == "__main__":
-    pass
+    import examples.say_hello  # noqa: F401
