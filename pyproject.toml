@@ -54,11 +54,6 @@ build-backend = "hatchling.build"
 [tool.hatch.build.targets.wheel]
 packages = ["src/python_template"]
 
-[tool.uv.workspace]
-members = [
-    "src/python_template",
-]
-
 [tool.ruff]
 line-length = 100
 target-version = "py311"
