@@ -42,10 +42,10 @@ all = ["python-template[dev,docs]"]
 pytemp = "python_template.__main__:main"
 
 [project.urls]
-Homepage = "https://github.com/fswair/vowel"
-Documentation = "https://github.com/fswair/vowel#readme"
-Repository = "https://github.com/fswair/vowel.git"
-Issues = "https://github.com/fswair/vowel/issues"
+Homepage = ""
+Documentation = ""
+Repository = ""
+Issues = ""
 
 [build-system]
 requires = ["hatchling"]
