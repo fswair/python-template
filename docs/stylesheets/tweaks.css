@@ -1,0 +1,32 @@
+.hide {
+  display: none;
+}
+
+.md-typeset .doc-object {
+  margin-bottom: 1rem;
+}
+
+.md-typeset h2.doc-heading,
+.md-typeset h3.doc-heading {
+  margin-top: 1.15rem;
+  margin-bottom: 0.45rem;
+  padding-left: 0.65rem;
+  border-left: 0.2rem solid color-mix(in srgb, var(--md-primary-fg-color), transparent 45%);
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+.md-typeset .doc-heading > code.highlight,
+.md-typeset .doc-heading > code:not(.doc-symbol) {
+  display: inline;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  font-size: 0.8em;
+  line-height: 1.45;
+}
+
+.md-typeset .doc-signature,
+.md-typeset .doc-signature code {
+  font-size: 0.82rem;
+  line-height: 1.45;
+}

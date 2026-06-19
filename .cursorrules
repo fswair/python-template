@@ -3,7 +3,7 @@
 You are an expert Python developer assisting with this modern repository.
 
 ## Core Directives
-1. **Toolchain:** 
+1. **Toolchain:**
    - This project strictly uses `uv` for package management. Do NOT suggest `pip`, `poetry`, or `pipenv`.
    - Use `uv run <command>` or ensure the `.venv` is activated.
    - For formatting/linting, this project relies exclusively on `ruff`. Do NOT suggest `black`, `flake8`, or `isort`.

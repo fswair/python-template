@@ -1,6 +1,6 @@
 # Contributing
 
-First off, thank you for considering contributing to this project! 
+First off, thank you for considering contributing to this project!
 
 ## Local Development Setup
 
@@ -12,14 +12,12 @@ First off, thank you for considering contributing to this project!
 
 2. **Install dependencies using `uv`:**
    ```bash
-   uv venv
-   source .venv/bin/activate
-   uv pip install -e ".[dev]"
+   uv sync --extra dev --extra docs
    ```
 
 3. **Install pre-commit hooks:**
    ```bash
-   pre-commit install
+   uv run pre-commit install
    ```
 
 ## Development Workflow
@@ -27,11 +25,15 @@ First off, thank you for considering contributing to this project!
 We use a `Makefile` to simplify common tasks:
 
 - `make format`: Formats code using `ruff`.
+- `make check-formatted`: Verifies formatting without rewriting files.
 - `make check`: Runs linters (`ruff check`) and type checkers (`basedpyright`, `ty`).
+- `make check-version`: Verifies `VERSION` and `_version.py` agree.
 - `make tests`: Runs the test suite using `pytest`.
+- `make docs`: Builds the documentation with MkDocs strict mode.
 - `make all`: Runs formatting and checking consecutively.
+- `make prod`: Runs formatting checks, lint/type checks, tests, and docs.
 
-Before submitting a Pull Request, please ensure `make all` and `make tests` run without any errors.
+Before submitting a Pull Request, please ensure `make prod` runs without any errors.
 
 ## Pull Requests
 

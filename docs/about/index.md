@@ -13,6 +13,6 @@ Our goal is to provide a comprehensive, ready-to-use template for modern Python 
 
 ## License
 
-This project is open-source and available under the terms of the MIT License. Feel free to use, modify, and distribute it for both commercial and non-commercial purposes. 
+This project is open-source and available under the terms of the MIT License. Feel free to use, modify, and distribute it for both commercial and non-commercial purposes.
 
 To learn more about contributing, please check out our `CONTRIBUTING.md` on GitHub!

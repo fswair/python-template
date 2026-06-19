@@ -1,7 +1,7 @@
 [project]
-name = "python-template"
-version = "0.1.0"
-description = "silence is golden"
+name = "advanced_project_template"
+dynamic = ["version"]
+description = "Configurable Python project starter generator."
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "MIT"}
@@ -12,13 +12,14 @@ classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
 ]
-keywords = []
-dependencies = []
+keywords = ["template", "starter", "scaffold", "cookiecutter"]
+dependencies = [
+    "pyyaml>=6.0.2",
+]
 
 [project.optional-dependencies]
 dev = [
@@ -36,10 +37,10 @@ docs = [
     "mkdocstrings[python]"
 ]
 
-all = ["python-template[dev,docs]"]
+all = ["advanced_project_template[dev,docs]"]
 
 [project.scripts]
-pytemp = "python_template.__main__:main"
+advanced_project_template = "advanced_project_template.__main__:main"
 
 [project.urls]
 Homepage = ""
@@ -51,13 +52,16 @@ Issues = ""
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[tool.hatch.version]
+path = "src/advanced_project_template/_version.py"
+
 [tool.hatch.build.targets.wheel]
-packages = ["src/python_template"]
+packages = ["src/advanced_project_template"]
 
 [tool.ruff]
 line-length = 100
 target-version = "py311"
-exclude = []
+exclude = [".venv", "__pycache__", ".ruff_cache", ".pytest_cache", "tmp", "build", "dist", "site"]
 
 [tool.ruff.lint]
 select = [
@@ -88,10 +92,14 @@ ignore_missing_imports = true
 python-version = "3.11"
 
 [tool.ty.src]
-exclude = []
+exclude = [".venv", "__pycache__", ".ruff_cache", ".pytest_cache", "tmp", "build", "dist", "site"]
 
 [tool.ty.rules]
 unresolved-import = "ignore"
+
+[tool.basedpyright]
+include = ["src", "tests", "examples", "scripts"]
+exclude = [".venv", "__pycache__", ".ruff_cache", ".pytest_cache", "tmp", "build", "dist", "site"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

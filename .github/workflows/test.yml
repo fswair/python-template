@@ -5,6 +5,14 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
@@ -16,30 +24,27 @@ jobs:
     steps:
     - uses: actions/checkout@v6
 
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v6
+      with:
+        python-version: ${{ matrix.python-version }}
+
     - name: Install uv
       uses: astral-sh/setup-uv@v7
       with:
         enable-cache: true
 
-    - name: Set up Python ${{ matrix.python-version }}
-      run: uv python install ${{ matrix.python-version }}
-
     - name: Install dependencies
-      run: |
-        uv venv
-        uv pip install -e ".[dev]"
+      run: uv sync --frozen --all-extras
 
-    - name: Format Code (make format)
-      run: |
-        source .venv/bin/activate
-        make format
+    - name: Check Formatting
+      run: make check-formatted
 
-    - name: Check Code (make check)
-      run: |
-        source .venv/bin/activate
-        make check
+    - name: Check Code
+      run: make check
 
-    - name: Run Tests (make tests)
-      run: |
-        source .venv/bin/activate
-        make tests
+    - name: Run Tests
+      run: make tests
+
+    - name: Build Package
+      run: uv build

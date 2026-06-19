@@ -1,23 +1,25 @@
-# Python Template - AI Context
+# Tempx - AI Context
 
 ## Overview
-This is a modern Python project boilerplate designed for scalability and performance. It relies on extremely fast Rust-based tools for the Python ecosystem.
+This repository contains `advanced_project_template`, a configurable Python starter generator. It can emit `thin`, `base`, and `full` profiles, then selectively enable or disable docs, GitHub Actions, pre-commit, security files, agent context files, release helpers, rename support, and helper packages.
 
 ## Tech Stack & Guidelines for AI Agents:
 
-- **Dependency Management:** `uv`. 
+- **Dependency Management:** `uv`.
   - *Rule:* NEVER use `pip install` or `poetry`. Always use `uv pip install` or `uv add`.
-- **Linting & Formatting:** `ruff`. 
+- **Linting & Formatting:** `ruff`.
   - *Rule:* NEVER use `black`, `isort`, `flake8`, or `pylint`. `ruff` is configured in `pyproject.toml` to handle all formatting and linting.
-- **Type Checking:** `basedpyright` and `ty`. 
+- **Type Checking:** `basedpyright` and `ty`.
   - *Rule:* All new code MUST include strict Python 3.11+ type hints.
-- **Testing:** `pytest`. 
+- **Testing:** `pytest`.
   - *Rule:* Place tests in the `tests/` directory. Do not use the legacy `unittest` module. Use `pytest` fixtures where appropriate.
-- **Workflow:** `make`. 
-  - *Rule:* Use `make check`, `make format`, and `make tests` to execute tasks locally. Always activate the `.venv` first (`source .venv/bin/activate`).
+- **Workflow:** `make`.
+  - *Rule:* Use `make check`, `make check-version`, `make format`, `make tests`, and `make docs` to execute tasks locally. Prefer `uv run` and `uv sync`; do not require manual `.venv` activation.
+- **Generated Workspaces:** `advanced_project_template`.
+  - *Rule:* Prefer `advanced_project_template.yml` feature toggles over manually deleting generated files when changing a generated project's shape.
 
 ## Project Structure
-- `src/python_template/`: Main application source code.
+- `src/advanced_project_template/`: Main application source code.
 - `tests/`: Test suites.
 - `docs/`: MkDocs Material documentation.
 - `examples/`: Example scripts showing how to use the package.

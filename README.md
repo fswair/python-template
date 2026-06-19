@@ -1,68 +1,101 @@
-# Python Template
+# Tempx
 
-A modern, fully-featured boilerplate for scaling Python projects from development to production.
+`advanced_project_template` is a configurable Python starter generator. It builds thin, base, or full Python workspaces from prompts, command-line flags, or a reusable YAML config.
 
-## ✨ Features
+## Features
 
-- **Package Manager:** Lightning-fast environment & dependency management using [uv](https://github.com/astral-sh/uv).
-- **Linting & Formatting:** Extremely fast code analysis and formatting via [Ruff](https://github.com/astral-sh/ruff).
-- **Type Checking:** Strict and modern type testing with [basedpyright](https://github.com/DetachHead/basedpyright) and [ty](https://github.com/tyneai/ty).
-- **Testing:** Out-of-the-box setup for [pytest](https://docs.pytest.org/en/latest/).
-- **Documentation:** Beautiful docs setup using [MkDocs Material](https://squidfunk.github.io/mkdocs-material/).
-- **CI/CD Pipeline:** GitHub Actions for automated testing (multi-Python matrix), PyPI trusted publishing, and GitHub Pages deployments.
-- **Developer Experience:** Integrated VS Code settings, `pre-commit` hooks, and a straightforward `Makefile` for daily tasks.
-- **Community Ready:** Issue/PR templates, `CONTRIBUTING.md`, `SECURITY.md`, and an `MIT` License.
+- Thin, base, and full starter profiles
+- Interactive prompts with sensible defaults, including GitHub username
+- YAML config export and repeatable regeneration
+- Optional docs, tests, examples, GitHub Actions, pre-commit hooks, release helpers, security policy, agent-facing context files, and rename script
+- Optional `packages/helpers/*` workspace-style helper packages
+- Generated projects use `uv`, Ruff, `ty`, basedpyright, pytest, Hatchling, and optional MkDocs Material
 
-## 🚀 Getting Started
+## Usage
 
-### Prerequisites
-Make sure you have [uv](https://github.com/astral-sh/uv) installed on your system.
-
-### Installation
-
-1. Clone this repository (or use it as a GitHub Template):
-   ```bash
-   git clone https://github.com/yourusername/python_template.git
-   cd python_template
-   ```
-
-2. Rename the template to your own project name (updates files, folders, and configs):
-   ```bash
-   make rename my_new_project
-   ```
-
-3. Create a virtual environment and install dependencies:
-   ```bash
-   uv venv
-   source .venv/bin/activate
-   uv pip install -e ".[dev]"
-   ```
-
-4. Install pre-commit hooks to ensure code quality before commits:
-   ```bash
-   pre-commit install
-   ```
-
-## 🛠️ Development Workflow
-
-A simple `Makefile` is provided to run common development tasks:
-
-- `make format`: Auto-formats the codebase using Ruff.
-- `make check`: Runs Ruff linter and strict type-checkers (basedpyright & ty).
-- `make tests`: Executes the pytest suite.
-- `make all`: Runs `format` followed by `check`.
-
-*Before pushing your code or opening a PR, always ensure `make all` and `make tests` pass smoothly.*
-
-## 📚 Documentation
-
-To preview the project documentation locally:
+Create a full project interactively:
 
 ```bash
-mkdocs serve --dev-addr 127.0.0.1:8080
+advanced_project_template new
 ```
-This will start a local live-reloading server at `http://127.0.0.1:8080`.
 
-## 📜 License
+The interactive flow uses the GitHub username and project name to derive repository placeholders, for example `https://github.com/<username>/<project>`.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Create a full project interactively with an explicit output directory:
+
+```bash
+advanced_project_template new my-project
+```
+
+Create a thin project without prompts:
+
+```bash
+advanced_project_template new my-project --profile thin --no-input
+```
+
+Create a base project with security and agent context files, but without the docs site:
+
+```bash
+advanced_project_template new my-project --profile base --no-input
+```
+
+Write a reusable config:
+
+```bash
+advanced_project_template config starter.yml --profile full
+advanced_project_template config starter.yml --profile base --disable-security --enable-packages --helper-package my-helper
+```
+
+Generate from config:
+
+```bash
+advanced_project_template new --config starter.yml --no-input
+advanced_project_template new my-project --config starter.yml --no-input
+```
+
+Generate with helper packages:
+
+```bash
+advanced_project_template new my-project --no-input --enable-packages --helper-package my-helper
+```
+
+Feature toggles are exposed as paired flags, for example:
+
+```bash
+advanced_project_template new my-project --no-input --disable-docs --enable-agent-files --enable-security
+```
+
+## Development
+
+Install dependencies:
+
+```bash
+uv sync --extra dev --extra docs
+```
+
+Run the release-grade validation gate:
+
+```bash
+make prod
+```
+
+Run pre-commit checks:
+
+```bash
+make pre-commit
+```
+
+## Release
+
+Update this package version:
+
+```bash
+./bump.sh 0.2.0
+```
+
+Then validate and build:
+
+```bash
+make prod
+uv build
+```

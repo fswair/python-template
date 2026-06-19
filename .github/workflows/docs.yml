@@ -8,26 +8,28 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: docs-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v7
         with:
           enable-cache: true
 
-      - name: Set up Python
-        run: uv python install 3.11
-
       - name: Install dependencies
-        run: |
-          uv venv
-          uv pip install -e ".[docs]"
+        run: uv sync --frozen --extra docs
 
       - name: Deploy MkDocs
-        run: |
-          source .venv/bin/activate
-          mkdocs gh-deploy --force
+        run: uv run --extra docs mkdocs gh-deploy --force --strict

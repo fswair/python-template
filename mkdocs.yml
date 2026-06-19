@@ -1,11 +1,86 @@
 site_name: Python Template
 site_description: silence is golden
+site_url: https://yourusername.github.io/python-template/
+strict: true
+repo_name: yourusername/python-template
+repo_url: https://github.com/yourusername/python-template
+edit_uri: edit/main/docs/
+
 theme:
   name: material
+  palette:
+    - scheme: slate
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to light mode
+    - scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Switch to dark mode
+  features:
+    - navigation.sections
+    - navigation.path
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - toc.follow
+    - content.code.copy
+    - content.tabs.link
+    - content.action.edit
+    - content.action.view
+
 plugins:
   - search
   - mkdocstrings:
-      default_handler: python
+      handlers:
+        python:
+          paths:
+            - src
+          options:
+            docstring_style: google
+            members_order: source
+            merge_init_into_class: true
+            show_root_heading: true
+            show_root_full_path: false
+            show_symbol_type_heading: true
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - footnotes
+  - md_in_html
+  - tables
+  - pymdownx.details
+  - pymdownx.highlight:
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+extra:
+  generator: false
+
+extra_css:
+  - stylesheets/tweaks.css
+
 nav:
   - Home: index.md
+  - Getting Started:
+      - Installation: getting-started/installation.md
+      - Quickstart: getting-started/quickstart.md
+  - Development:
+      - Development Workflow: development.md
+      - Testing: testing.md
+      - Release: release.md
+  - API Reference:
+      - advanced_project_template: api/advanced_project_template.md
+  - Starter Builder: starter-builder.md
   - About: about/index.md

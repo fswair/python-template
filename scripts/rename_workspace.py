@@ -10,6 +10,10 @@ def main():
     new_name_underscore = sys.argv[1]
     new_name_dash = new_name_underscore.replace("_", "-")
 
+    if not new_name_underscore.replace("_", "").isalnum():
+        print("Error: Name must contain only letters, numbers, and underscores.")
+        sys.exit(1)
+
     root_dir = Path(__file__).parent.parent.resolve()
     pyproject_path = root_dir / "pyproject.toml"
 
@@ -26,7 +30,17 @@ def main():
 
     current_name_underscore: str = current_name_dash.replace("-", "_")
 
-    skip_dirs = {".git", ".venv", "__pycache__", ".mypy_cache", ".ruff_cache", "scripts"}
+    skip_dirs = {
+        ".git",
+        ".venv",
+        "__pycache__",
+        ".mypy_cache",
+        ".pytest_cache",
+        ".ruff_cache",
+        "build",
+        "dist",
+        "site",
+    }
 
     changed_files_count = 0
 

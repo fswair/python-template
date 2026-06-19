@@ -1,2 +1,7 @@
 if __name__ == "__main__":
-    import examples.say_hello  # noqa: F401
+    if __package__:
+        from .say_hello import main
+    else:
+        from say_hello import main
+
+    raise SystemExit(main())

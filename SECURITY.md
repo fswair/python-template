@@ -11,7 +11,7 @@ Please see the table below for the supported versions of this project currently 
 
 ## Reporting a Vulnerability
 
-Please do not report security vulnerabilities through public GitHub issues. 
+Please do not report security vulnerabilities through public GitHub issues.
 Instead, please report them to the project maintainers privately.
 
 If you discover a security vulnerability within this project, please send an e-mail to the maintainer. We will try to address the issue as soon as possible.
